@@ -1,0 +1,17 @@
+﻿@model Library.Models.Entities.Author
+
+@{
+    ViewData["Title"] = "Update Authors";
+}
+
+<h1>Edit Author</h1>
+
+<form method="post">
+    <label>Name</label>
+    <input class="form-control" name="Name" value="@Model.Name" />
+
+    <label>Biography</label>
+    <textarea class="form-control" name="Biography">@Model.Biography</textarea>
+
+    <button class="btn btn-primary mt-3">Update</button>
+</form>

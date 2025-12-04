@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Library.Models.Entities.Author>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<h1>Authors</h1>
+
+<p><a class="btn btn-success" href="/Author/Create">Add Author</a></p>
+
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Actions</th></tr>
+    </thead>
+
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Name</td>
+                <td>
+                    <a class="btn btn-primary" href="/Author/Edit/@a.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Author/Delete/@a.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

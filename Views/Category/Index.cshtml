@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Library.Models.Entities.Category>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+<p><a class="btn btn-success" href="/Category/Create">Add Category</a></p>
+
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Actions</th></tr>
+    </thead>
+
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>
+                    <a class="btn btn-primary" href="/Category/Edit/@c.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Category/Delete/@c.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

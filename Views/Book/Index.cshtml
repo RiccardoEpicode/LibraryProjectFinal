@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Library.Models.Entities.Book>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+
+<h1>Books</h1>
+
+<p><a class="btn btn-success" href="/Book/Create">Add book</a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cover</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Available</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>
+                    @if (b.CoverImg != null)
+                    {
+                        <img src="@b.CoverImg" width="60" />
+                    }
+                </td>
+                <td>@b.Title</td>
+                <td>@b.Author.Name</td>
+                <td>@b.Category.Name</td>
+                <td>@(b.IsAvailable ? "Yes" : "No")</td>
+
+                <td>
+                    <a class="btn btn-primary" href="/Book/Edit/@b.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Book/Delete/@b.Id">Delete</a>
+
+                    @if (b.IsAvailable)
+                    {
+                        <a class="btn btn-warning" href="/Loan/Borrow/@b.Id">Borrow</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

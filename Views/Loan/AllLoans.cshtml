@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Library.Models.Entities.Loan>
+
+@{
+    ViewData["Title"] = "All Loans";
+}
+
+
+<h1>Loans</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>User Email</th>
+            <th>Loan Date</th>
+            <th>Due Date</th>
+            <th>Returned</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var l in Model)
+        {
+            <tr>
+                <td>@l.Book.Title</td>
+                <td>@l.UserEmail</td>
+                <td>@l.LoanDate.ToShortDateString()</td>
+                <td>@l.DueDate.ToShortDateString()</td>
+                <td>@(l.Returned ? "Yes" : "No")</td>
+
+                <td>
+                    @if (!l.Returned)
+                    {
+                        <a class="btn btn-success" href="/Loan/ReturnBook/@l.Id">Return</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

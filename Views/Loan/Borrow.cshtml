@@ -1,0 +1,21 @@
+﻿@model Library.Models.Entities.Book
+
+@{
+    ViewData["Title"] = "Get Loans";
+}
+
+
+<h1>Borrow: @Model.Title</h1>
+
+<form method="post">
+
+    <input type="hidden" name="bookId" value="@Model.Id" />
+
+    <label>Email</label>
+    <input class="form-control" name="email" />
+
+    <label>Due Date</label>
+    <input class="form-control" name="dueDate" type="date" />
+
+    <button class="btn btn-warning mt-3">Confirm Borrow</button>
+</form>

@@ -1,0 +1,65 @@
+﻿@model Library.Models.Entities.Book
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<h1 class="mb-4">Edit Book</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Id" />
+
+    <!-- Title -->
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <!-- Author -->
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <select asp-for="AuthorId" class="form-select">
+            @foreach (var a in ViewBag.Authors)
+            {
+                <option value="@a.Id" selected="@(a.Id == Model.AuthorId)">
+                    @a.Name
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select asp-for="CategoryId" class="form-select">
+            @foreach (var c in ViewBag.Categoaries)
+            {
+                <option value="@c.Id" selected="@(c.Id == Model.CategoryId)">
+                    @c.Name
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- Current Cover Preview -->
+    <div class="mb-3">
+        <label class="form-label d-block">Current Cover</label>
+        @if (!string.IsNullOrEmpty(Model.CoverImg))
+        {
+            <img src="@Model.CoverImg" width="150" class="img-thumbnail mb-2 shadow-sm" />
+        }
+        else
+        {
+            <p class="text-muted">No cover uploaded.</p>
+        }
+    </div>
+
+    <!-- Upload New Cover -->
+    <div class="mb-3">
+        <label class="form-label">Replace Cover (Optional)</label>
+        <input type="file" name="coverFile" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary mt-3">Update</button>
+</form>
